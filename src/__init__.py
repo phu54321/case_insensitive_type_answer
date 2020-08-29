@@ -21,16 +21,17 @@
 # License: GNU AGPL, version 3 or later;
 # See http://www.gnu.org/licenses/agpl.html
 
-from aqt.editor import Editor
+from aqt.reviewer import Reviewer
 from anki.hooks import wrap
-from aqt.utils import askUser
 
 from .utils import openChangelog
 from .utils import uuid  # duplicate UUID checked here
 
 
-def onLoadNote(self, focusTo=None):
-    pass
+def newCorrect(self, given, correct, showBad=True, *, _old):
+    given = given.lower()
+    correct = correct.lower()
+    return _old(self, given, correct, showBad)
 
 
-Editor.loadNote = wrap(Editor.loadNote, onLoadNote, "after")
+Reviewer.correct = wrap(Reviewer.correct, newCorrect, "around")
