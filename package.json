@@ -1,5 +1,5 @@
 {
-  "name": "addon_template",
+  "name": "case_insensitive_type_answer",
   "version": "20.5.4i8",
   "description": "template for trgkanki's addon",
   "scripts": {
